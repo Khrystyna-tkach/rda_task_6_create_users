@@ -1,6 +1,16 @@
 -- write your code for database user creation here
-create user 'webappuser'@'%' identified by 'P@ssw0rd';
-create user 'deploymentuser'@'%' identified by 'P@ssw0rd'
+CREATE USER IF NOT EXISTS 'webappuser'@'%'
+IDENTIFIED BY 'P@ssw0rd';
 
-grant select, update, insert, delete on ShopDB.* to 'webappuser';
-grant all privileges on ShopDB.* to 'deploymentuser'@'%';
+CREATE USER IF NOT EXISTS 'deploymentuser'@'%'
+IDENTIFIED BY 'P@ssw0rd';
+
+GRANT SELECT, INSERT, UPDATE, DELETE
+ON ShopDB.*
+TO 'webappuser'@'%';
+
+GRANT ALL PRIVILEGES
+ON ShopDB.*
+TO 'deploymentuser'@'%';
+
+FLUSH PRIVILEGES;
